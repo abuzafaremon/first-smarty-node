@@ -18,12 +18,20 @@ const users = [
   { id: 6, name: 'Bobita', email: 'bobita@gmail.com', phone: '01788888888' },
   { id: 7, name: 'Kobita', email: 'kobita@gmail.com', phone: '01788888888' },
 ]
+
+// app.get('/users',(req,res)=>{
+//   res.send(users);
+// })
+
 app.get('/users', (req, res) => {
   if (req.query.name) {
     const search = req.query.name.toLowerCase();
     const matched = users.filter(user => user.name.toLowerCase().includes(search));
+    res.send(matched);
   }
-  res.send(users);
+  else{
+    res.send(users);
+  }
 });
 app.get('/user/:id', (req, res) => {
   console.log(req.params);
